@@ -20,17 +20,29 @@ router.route("/register")
         });
 
         /// 3 generate token
+        const token = user.generateToken()
         const doc = await user.save();
 
         // 4 send email
 
         // save...send token with cookie
-        res.cookie('x-access-token','jdbkhsdbh')
-        .status(200).send(doc); 
+        res.cookie('x-access-token',token)
+        .status(200).send(getUserProps(doc)); 
     } catch(error){
         res.status(400).json({message:'Error',error: error })
     }
 })
+
+const getUserProps = (user) => {
+    return{
+        _id: user._id,
+        email: user.email,
+        firstname:user.firstname,
+        lastname: user.lastname,
+        age: user.age,
+        role: user.role
+    }
+}
 
 
 module.exports = router;
