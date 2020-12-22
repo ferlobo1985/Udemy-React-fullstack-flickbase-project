@@ -1,7 +1,7 @@
 const express  = require('express');
 let router = express.Router();
 require('dotenv').config();
-
+const {checkLoggedIn} = require('../../middleware/auth');
 
 const { User } = require('../../models/user_model');
 
@@ -56,6 +56,14 @@ router.route("/signin")
     }
 })
 
+router.route("/profile")
+.get(checkLoggedIn,async (req,res)=>{
+
+    
+    console.log(req.user)
+    res.status(200).send('ok'); 
+
+})
 
 
 
