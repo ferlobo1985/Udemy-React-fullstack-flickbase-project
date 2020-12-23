@@ -2,6 +2,7 @@ const express  = require('express');
 let router = express.Router();
 const { checkLoggedIn } = require('../../middleware/auth');
 const { grantAccess } = require('../../middleware/roles');
+const { sortArgsHelper } = require('../../config/helpers');
 
 // model 
 const { Article } = require('../../models/article_model');
@@ -86,6 +87,26 @@ router.route("/get_byid/:id")
         res.status(400).json({message:'Error fetching article',error});
     }
 })
+
+
+router.route("/loadmore")
+.post(async(req,res)=>{
+    try{
+        let sortArgs = sortArgsHelper(req.body)
+
+        const articles = await Article
+        .find({status:'public'})
+        .sort([[sortArgs.sortBy,sortArgs.order]])
+        .skip(sortArgs.skip)
+        .limit(sortArgs.limit);
+        
+        res.status(200).json(articles)
+    } catch(error){
+        console.log(error)
+        res.status(400).json({message:'Error fetching articles',error});
+    }
+})
+
 
 
 
