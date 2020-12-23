@@ -72,6 +72,32 @@ router.route("/admin/:id")
     }
 });
 
+
+router.route("/admin/paginate")
+.post(checkLoggedIn,grantAccess('readAny','articles'),async(req,res)=>{
+    try{
+
+        // let aggQuery = Article.aggregate([
+        //     { $match: { status:"public" }},
+        //     { $match: { title:{ $regex:/Lorem/ }}}
+        // ])
+
+        const limit = req.body.limit ?  req.body.limit : 5;
+        const aggQuery = Article.aggregate();
+        const options = {
+            page: req.body.page,
+            limit,
+            sort:{_id:'asc'}
+        }
+
+        const articles = await Article.aggregatePaginate(aggQuery,options);
+        res.status(200).json(articles)
+    } catch(error){
+        res.status(400).json({message:'Error',error});
+    }
+})
+
+
 /// NO AUH REQUIRED ////
 
 router.route("/get_byid/:id")
