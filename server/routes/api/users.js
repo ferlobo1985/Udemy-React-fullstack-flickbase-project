@@ -60,6 +60,7 @@ router.route("/profile")
 .get(checkLoggedIn,async (req,res)=>{
 
     
+    
     console.log(req.user)
     res.status(200).send('ok'); 
 

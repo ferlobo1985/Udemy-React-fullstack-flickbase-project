@@ -9,7 +9,7 @@ exports.checkToken = async(req, res, next) => {
             const accessToken = req.headers["x-access-token"];
             const { _id,email,exp } = jwt.verify(accessToken, process.env.DB_SECRET);
 
-            res.locals.userData = await User.findById('5fe25de3e4fadbce282a680b');
+            res.locals.userData = await User.findById(_id);
             next()
         } else{
             next();
