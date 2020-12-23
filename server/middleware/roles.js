@@ -9,6 +9,8 @@ exports.grantAccess =  function(action, resource){
                     error:"Youn dont have permission"
                 })
             }
+
+            res.locals.permission = permission;
             next()
         } catch(error){
             next(error)

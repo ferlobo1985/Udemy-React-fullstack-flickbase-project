@@ -2,7 +2,7 @@ const express  = require('express');
 let router = express.Router();
 require('dotenv').config();
 const {checkLoggedIn} = require('../../middleware/auth');
-
+const { grantAccess } = require('../../middleware/roles');
 const { User } = require('../../models/user_model');
 
 router.route("/register")
@@ -57,12 +57,16 @@ router.route("/signin")
 })
 
 router.route("/profile")
-.get(checkLoggedIn,grantAccess('action','resource'),async (req,res)=>{
+.get(checkLoggedIn,grantAccess('readOwn','profile'),async (req,res)=>{
+    try {
+        const permission = res.locals.permission;
+        const user = await User.findById(req.user._id);
+        if(!user) return res.status(400).json({message:'User not found'});
 
-    
-    console.log(req.user)
-    res.status(200).send('ok'); 
-
+        res.status(200).json(permission.filter(user._doc)); 
+    }catch(error){
+        return res.status(400).send(error);
+    }
 })
 
 
