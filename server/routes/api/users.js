@@ -68,6 +68,35 @@ router.route("/profile")
         return res.status(400).send(error);
     }
 })
+.patch(checkLoggedIn,grantAccess('updateOwn','profile'),async (req,res)=>{
+    try {
+        const user = await User.findOneAndUpdate(
+            {_id: req.user._id},
+            {
+                "$set":{
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname,
+                    age: req.body.age
+                }
+            },
+            { new: true }
+        );
+        if(!user) return res.status(400).json({message:'User not found'})
+
+        res.status(200).json(getUserProps(user))
+    } catch(error){
+        res.status(400).json({message:"Problem updating",error:error});
+    }
+})
+
+
+router.route('/isauth')
+.get(checkLoggedIn,async (req,res) =>{
+    res.status(200).send(getUserProps(req.user))
+})
+
+
+
 
 
 
