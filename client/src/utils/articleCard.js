@@ -25,7 +25,7 @@ const ArticleCard = ({article}) => {
                 <Typography gutterBottom variant="h5" component="h2">
                         Some title
                 </Typography>
-                <Typography variant="body" component="p">
+                <Typography variant="body2" component="p">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                 </Typography>
             </CardContent>
