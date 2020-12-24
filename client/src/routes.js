@@ -3,6 +3,7 @@ import { Switch, Route,BrowserRouter} from 'react-router-dom';
 import GoogleFontLoader from 'react-google-font-loader';
 import Loader from './utils/loader';
 import MainLayout from './hoc/mainLayout';
+import AuthGuard from './hoc/authGuard';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { isAuthUser } from './store/actions/users_actions';
@@ -11,6 +12,8 @@ import Home from './components/home';
 import Header from './components/navigation/header';
 import Auth from './components/auth';
 import Dashboard from './components/dashboard';
+import Profile from './components/dashboard/profile';
+import Articles from './components/dashboard/articles';
 
 const Routes = () => {
   const [loading,setLoading] = useState(true);
@@ -36,7 +39,9 @@ const Routes = () => {
       :
         <MainLayout>
           <Switch>
-            <Route path="/dashboard" component={Dashboard}/>
+            <Route path="/dashboard/articles" component={AuthGuard(Articles,true)}/>
+            <Route path="/dashboard/profile" component={AuthGuard(Profile)}/>
+            <Route path="/dashboard" component={AuthGuard(Dashboard)}/>
             <Route path="/auth" component={Auth}/>
             <Route path="/" component={Home}/>
           </Switch>
