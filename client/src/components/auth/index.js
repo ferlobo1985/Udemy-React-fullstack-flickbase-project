@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-
 import { useDispatch , useSelector } from 'react-redux';
 import { registerUser, signInUser} from '../../store/actions/users_actions';
 import { TextField, Button } from '@material-ui/core';
+import PreventAuthRoute from '../../hoc/preventAuthRoute';
 
 
 const Auth = (props) => {
@@ -49,7 +49,7 @@ const Auth = (props) => {
 
 
     return(
-        <>
+        <PreventAuthRoute>
             <div className="auth_container">
                 <h1>Authenticate</h1>
                 <form className="mt-3" onSubmit={formik.handleSubmit}>
@@ -90,7 +90,7 @@ const Auth = (props) => {
                 </form>
 
             </div>
-        </>
+        </PreventAuthRoute>
     )
 }
 

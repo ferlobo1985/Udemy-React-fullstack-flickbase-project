@@ -16,7 +16,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 
-const SideDrawer = ({signOutUser}) => {
+const SideDrawer = ({users,signOutUser}) => {
     const [state,setState] = useState(false);
 
     return(
@@ -44,25 +44,34 @@ const SideDrawer = ({signOutUser}) => {
                     </ListItem>
 
 
-                    <ListItem button component={RouterLink} to="/auth" onClick={()=>setState(false)}>
-                        <ListItemIcon><VpnKeyIcon/></ListItemIcon>
-                        <ListItemText primary="Sign in"/>
-                    </ListItem>
-                    <ListItem button onClick={()=> { 
-                        signOutUser()
-                        setState(false)
-                    }}>
-                        <ListItemIcon><VpnKeyIcon/></ListItemIcon>
-                        <ListItemText primary="Sign out"/>
-                    </ListItem>
+                    { !users.auth ?
+                        <ListItem button component={RouterLink} to="/auth" onClick={()=>setState(false)}>
+                            <ListItemIcon><VpnKeyIcon/></ListItemIcon>
+                            <ListItemText primary="Sign in"/>
+                        </ListItem>
+                    : 
+                        <ListItem button onClick={()=> { 
+                            signOutUser()
+                            setState(false)
+                        }}>
+                            <ListItemIcon><VpnKeyIcon/></ListItemIcon>
+                            <ListItemText primary="Sign out"/>
+                        </ListItem>
+                    }
+                    
+                    
                 </List>
-                <Divider/>
-                <List>
-                    <ListItem button component={RouterLink} to="/dashboard" onClick={()=>setState(false)}>
-                        <ListItemIcon><DashboardIcon/></ListItemIcon>
-                        <ListItemText primary="Dashboard"/>
-                    </ListItem>
-                </List>
+                { users.auth ?
+                    <>
+                        <Divider/>
+                        <List>
+                            <ListItem button component={RouterLink} to="/dashboard" onClick={()=>setState(false)}>
+                                <ListItemIcon><DashboardIcon/></ListItemIcon>
+                                <ListItemText primary="Dashboard"/>
+                            </ListItem>
+                        </List>
+                    </>
+                :null}
             </Drawer>
         </>
     )
