@@ -23,17 +23,17 @@ const ArticleCard = ({article}) => {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                        Some title
+                    { article.title}
                 </Typography>
                 <Typography variant="body2" component="p">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                   { article.excerpt }
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton>
                     <FavoriteIcon/>
                 </IconButton>
-                <Button size="small" color="primary" component={RouterLink} to={`/article/id`}>
+                <Button size="small" color="primary" component={RouterLink} to={`/article/${article._id}`}>
                     View article
                 </Button>
             </CardActions>

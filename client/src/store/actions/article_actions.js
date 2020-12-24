@@ -7,10 +7,15 @@ export const getArticles = (sort) => {
     return async(dispatch,getState)=>{
         try{
             const arts = await axios.post(`/api/articles/loadmore`,sort);
+            const prevArts = getState().articles.articles;
+            let newArts = [...arts.data];
 
-            dispatch(articles.getArticles(arts.data))
+            if(prevArts){
+                newArts = [...prevArts,...arts.data];
+            }
+            dispatch(articles.getArticles(newArts))
         } catch(error){
-
+            ///// 
         }
     }
 }
