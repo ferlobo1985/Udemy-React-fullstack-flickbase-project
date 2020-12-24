@@ -1,0 +1,242 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #424242;
+}
+a, a:hover {
+  color: inherit;
+}
+
+.navbar {
+  border-bottom: 5px solid #dbdbdb;
+  background: white;
+}
+.navbar.dash_layout {
+  position:relative !important;
+}
+
+nav .nav-link {
+  color: #17a2b8;
+  font-weight: bold;
+}
+
+.drawer_btn {
+  color: #0062cc;
+  cursor: pointer;
+}
+
+.app_container {
+  margin-top: 80px;
+}
+
+.root_loader {
+  text-align: center;
+  margin-top: 200px;
+}
+
+/*============ Carrousel ==============*/
+
+.carrousel_avatar {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  width: 100%;
+  height: 500px;
+}
+
+.carrousel_avatar div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+/*/////////////  ARTICLE /////////*/
+          
+
+.article_container h1 {
+  font-weight: 900;
+  font-size: 50px;
+  margin-top: 30px;
+}
+  
+.article_container {
+  font-size: 17px;
+}
+
+  .article_container .image{
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: 500px;
+    background-position: top center !important;
+  }
+
+
+@media (max-width: 800px) {
+  .article_container .image{
+    height: 300px;
+  }
+  .article_container h1 {
+    font-size: 35px;
+  }
+ 
+}
+
+
+/*/////////////  Scorecard /////////*/
+
+.scorecard {
+  width: 100%;
+  background-color: #a0adb8;
+  color: #fff;
+  margin-top: 50px;
+}
+
+.scorecard .rating .MuiListItemText-secondary{
+  font-size:50px;
+}
+.scorecard .MuiAvatar-colorDefault {
+  background-color: #efefef;
+}
+
+.scorecard .chip {
+  margin: 5px 10px 5px 0px;
+}
+.scorecard .MuiSvgIcon-root {
+color: #525252;
+}
+
+/*/////////////  auth /////////*/
+
+.auth_container { 
+  width: 250px;
+  margin: 0 auto;
+}
+
+.auth_container h1 {
+  text-align: center;
+}
+.auth_container button {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .auth_container {
+    width: 100%;
+  } 
+}
+
+/*////////// dashboard /////////*/
+
+.adminLayout {
+  height:100vh;
+}
+
+.app_container.dash_layout {
+  margin-top: 0px;
+  margin-bottom: 0px !important;
+  max-width: 100%;
+}
+
+.dash_layout nav{ 
+  background: #212121;
+  padding: 0px;
+  border-right: 5px solid #565656;
+}
+
+.dash_layout .MuiList-root {
+  color: #fff;
+}
+
+.dash_layout .MuiButtonBase-root {
+  border-bottom: 1px solid #313131;
+}
+
+/*///// forms /////////////*/
+
+.chip_container {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.chip_container .MuiChip-root {
+  margin-left: 10px;
+}
+
+.rdw-editor-toolbar {
+  margin-bottom: 0;
+}
+.rdw-editor-main {
+  border: 1px solid #F1F1F1;
+  padding: 10px;
+}
+
+.actors_form {
+  border: 1px solid #c9c9c9;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.actors_form .input {
+  margin-left: 10px;
+  flex: 1;
+}
+
+.actors_form .MuiButtonBase-root {
+  border-bottom:0px
+}
+.article_form {
+  padding-bottom: 50px;
+}
+.article_form .MuiSelect-root {
+  min-width: 200px;
+}
+
+.stepper_form {
+  text-align: center;
+}
+
+.auth_grid input {
+  font-size: 20px;
+}
+
+/*///// DASHBOARD TABLE /////////////*/
+
+.articles_table .action_btn{
+  width: 100px;
+  text-align: center;
+  font-weight: 900;
+  color: #fff;
+  cursor: pointer;
+}
+
+.articles_table .remove_btn {
+  background: #dc3545;
+}
+.articles_table .remove_btn:hover {
+  background: #ee7782;
+}
+
+.articles_table .edit_btn{ 
+  background: #117a8b;
+}
+.articles_table .edit_btn:hover{ 
+  background: #3d99a8;
+}
+
+.articles_table .status_btn {
+  background: #ffc107;
+}
+.articles_table .status_btn:hover{ 
+  background: #ffd24c;
+}
