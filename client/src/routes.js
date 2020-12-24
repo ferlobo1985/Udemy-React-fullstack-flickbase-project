@@ -36,6 +36,7 @@ const Routes = () => {
       :
         <MainLayout>
           <Switch>
+            <Route path="/dashboard" component={Dashboard}/>
             <Route path="/auth" component={Auth}/>
             <Route path="/" component={Home}/>
           </Switch>
