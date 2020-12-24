@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 
 import { useDispatch , useSelector } from 'react-redux';
-import { registerUser } from '../../store/actions/users_actions';
+import { registerUser, signInUser} from '../../store/actions/users_actions';
 import { TextField, Button } from '@material-ui/core';
 
 
@@ -14,7 +14,7 @@ const Auth = (props) => {
     const dispatch = useDispatch();
 
     const formik = useFormik({
-        initialValues:{ email:'',password:''},
+        initialValues:{ email:'francis@gmail.com',password:'testing123'},
         validationSchema:Yup.object({
             email:Yup.string()
             .required('Sorry the email is required')
@@ -31,7 +31,7 @@ const Auth = (props) => {
         if(register){
             dispatch(registerUser(values))
         }else {
-            // login
+            dispatch(signInUser(values))
         }
     }
 
