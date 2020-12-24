@@ -1,7 +1,8 @@
 import {
     GET_ARTICLES,
     ERROR_GLOBAL,
-    SUCCESS_GLOBAL
+    SUCCESS_GLOBAL,
+    CLEAR_NOTIFICATION
 } from '../types';
 
 /////////// articles //////////////
