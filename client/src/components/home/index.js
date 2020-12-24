@@ -22,7 +22,7 @@ const Home = () => {
       ///dispatch 
       dispatch(getArticles(initialSort))
     }
-  },[dispatch,articles])
+  },[dispatch,articles]);
 
 
   return(
