@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+
+import { useDispatch , useSelector } from 'react-redux';
+import { registerUser } from '../../store/actions/users_actions';
 import { TextField, Button } from '@material-ui/core';
+
 
 const Auth = (props) => {
     const [register, setRegister ] = useState(false);
+    const notifications = useSelector( state => state.notifications)
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues:{ email:'',password:''},
@@ -17,14 +23,29 @@ const Auth = (props) => {
             .required('Sorry the password is required')
         }),
         onSubmit:(values,{resetForm})=>{
-            console.log(values)
+            handleSubmit(values)
         }
     });
+
+    const handleSubmit = (values) => {
+        if(register){
+            dispatch(registerUser(values))
+        }else {
+            // login
+        }
+    }
+
 
     const errorHelper = (formik, values) => ({
         error: formik.errors[values] && formik.touched[values] ? true:false,
         helperText: formik.errors[values] && formik.touched[values] ? formik.errors[values] : null
-    })
+    });
+
+    useEffect(()=>{
+        if(notifications && notifications.success){
+            props.history.push('/dashboard')
+        }
+    },[notifications,props.history])
 
 
     return(
