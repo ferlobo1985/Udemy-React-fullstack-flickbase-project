@@ -49,3 +49,10 @@ export const isAuthUser = () => {
         }
     }
 }
+
+export const signOut= () => {
+    return async (dispatch) => {
+        removeTokenCookie();
+        dispatch(users.signOut())
+    }
+}

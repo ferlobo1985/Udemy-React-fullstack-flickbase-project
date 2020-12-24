@@ -10,17 +10,16 @@ import { isAuthUser } from './store/actions/users_actions';
 import Home from './components/home';
 import Header from './components/navigation/header';
 import Auth from './components/auth';
+import Dashboard from './components/dashboard';
 
 const Routes = () => {
   const [loading,setLoading] = useState(true);
   const dispatch = useDispatch();
   const users = useSelector(state=> state.users);
 
-
   useEffect(()=>{
     dispatch(isAuthUser())
   },[dispatch]);
-
 
   useEffect(()=>{
     if(users.auth !== null){

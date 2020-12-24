@@ -4,11 +4,18 @@ import SideDrawer from './sideNavigation';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { clearNotification } from '../../store/actions/index';
+import { signOut } from '../../store/actions/users_actions';
 import { showToast } from '../../utils/tools';
 
 const Header = (props) => {
     const notifications = useSelector(state => state.notifications)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    const signOutUser = () => {
+        dispatch(signOut())
+        props.history.push('/');
+    }
+
 
     useEffect(()=>{
         if(notifications && notifications.error){
@@ -32,7 +39,7 @@ const Header = (props) => {
                 >
                     FlickBase
                 </Link>
-                <SideDrawer/>
+                <SideDrawer signOutUser={signOutUser}/>
             </nav>
         </>
     )

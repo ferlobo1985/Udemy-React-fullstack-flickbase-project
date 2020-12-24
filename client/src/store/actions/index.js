@@ -3,7 +3,8 @@ import {
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
-    AUTH_USER
+    AUTH_USER,
+    SIGN_OUT
 } from '../types';
 
 /////////// articles //////////////
@@ -40,3 +41,7 @@ export const authUser = (user) => ({
     type: AUTH_USER,
     payload: user
 });
+
+export const signOut = () => ({
+    type:SIGN_OUT
+})
