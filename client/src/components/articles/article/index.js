@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { getArticle } from '../../../store/actions/article_actions';
+import { clearCurrentArticle } from '../../../store/actions/index';
 import Loader from '../../../utils/loader';
 import ScoreCard from '../../../utils/scoreCard';
 
@@ -12,7 +13,14 @@ const Article = (props) => {
     useEffect(()=>{
         /// props.match.params.id   
         dispatch(getArticle(props.match.params.id))
-    },[dispatch, props.match.params])
+    },[dispatch, props.match.params]);
+
+    useEffect(()=>{
+        return()=>{
+           dispatch(clearCurrentArticle())
+        }
+    },[dispatch])
+
 
 
     return(

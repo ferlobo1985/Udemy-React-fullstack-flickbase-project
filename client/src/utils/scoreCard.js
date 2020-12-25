@@ -54,8 +54,6 @@ const ScoreCard = ({current}) => {
                 </ListItemAvatar>
                 <ListItemText primary="Director" secondary={current.director}/>
             </ListItem>
-
-
         </List>
     )
 }
