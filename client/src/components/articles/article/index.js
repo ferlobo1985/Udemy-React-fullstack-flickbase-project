@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { getArticle } from '../../../store/actions/article_actions';
 import Loader from '../../../utils/loader';
+import ScoreCard from '../../../utils/scoreCard';
 
 
 const Article = (props) => {
@@ -32,7 +33,7 @@ const Article = (props) => {
                     }>
                     </div>
                 </div>
-
+                <ScoreCard current={current}/>
             </div>
         :
             <Loader/>
