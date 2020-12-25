@@ -1,5 +1,6 @@
 import {
     GET_ARTICLES,
+    GET_ARTICLE,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
@@ -14,6 +15,12 @@ export const getArticles = (articles) => ({
     type: GET_ARTICLES,
     payload: articles
 });
+
+export const getArticle = (article) => ({
+    type: GET_ARTICLE,
+    payload: article
+})
+
 
 
 /////// notification /////////////

@@ -20,4 +20,15 @@ export const getArticles = (sort) => {
     }
 }
 
+export const getArticle = (id) => {
+    return async (dispatch)=>{
+        try{
+            const request = await axios.get(`/api/articles/get_byid/${id}`);
+            dispatch(articles.getArticle(request.data[0]))
+        } catch(error){
+            dispatch(articles.errorGlobal(error.response.data.message))
+        }
+    }
+}
+
 
