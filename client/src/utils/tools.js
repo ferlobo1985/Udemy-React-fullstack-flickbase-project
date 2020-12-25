@@ -19,5 +19,9 @@ export const showToast = (type,msg) => {
 }
 
 export const getTokenCookie = () => cookie.load('x-access-token');
-export const removeTokenCookie = () => cookie.remove('x-access-token');
-export const getAuthHeader = { headers: { 'x-access-token':getTokenCookie() }}
+export const removeTokenCookie = () => cookie.remove('x-access-token', {path:'/'});
+export const getAuthHeader = () => {
+    return { headers: { 'x-access-token':getTokenCookie() }}
+}
+
+
