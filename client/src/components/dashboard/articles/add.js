@@ -4,6 +4,8 @@ import { useFormik, FieldArray, FormikProvider } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { validation, formValues } from './validationSchema';
 
+import WYSIWYG from '../../../utils/forms/wysiwyg';
+
 import { 
     TextField, 
     Button, 
@@ -32,11 +34,15 @@ const AddArticle = (props) => {
     });
 
 
+    const handleEditorState = (state) =>{
+        console.log(state)
+    }
+    
+
     const errorHelper = (formik, values) => ({
         error: formik.errors[values] && formik.touched[values] ? true:false,
         helperText: formik.errors[values] && formik.touched[values] ? formik.errors[values] : null
     });
-
 
 
     return(
@@ -51,6 +57,13 @@ const AddArticle = (props) => {
                         variant="outlined"
                         {...formik.getFieldProps('title')}
                         {...errorHelper(formik,'title')}
+                    />
+                </div>
+
+
+                <div className="form-group">
+                    <WYSIWYG
+                        setEditorState={(state)=> handleEditorState(state)}
                     />
                 </div>
 
