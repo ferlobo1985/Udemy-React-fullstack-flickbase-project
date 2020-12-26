@@ -13,11 +13,11 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { useDispatch,useSelector } from 'react-redux';
-import { changeStatusArticle } from '../../../store/actions/article_actions';
-import { getPaginateArticles } from '../../../store/actions/article_actions';
+import { getPaginateArticles,removeArticle,changeStatusArticle } from '../../../store/actions/article_actions';
 
 const Articles = (props) => {
     const articles = useSelector(state=>state.articles);
+    const notifications = useSelector(state=>state.notifications)
     const dispatch = useDispatch();
     const [removeAlert, setRemoveAlert] = useState(false);
     const [toRemove,setToRemove] = useState(null)
@@ -34,8 +34,7 @@ const Articles = (props) => {
     }
 
     const handleDelete = () => {
-        ///
-        console.log(toRemove)
+      dispatch(removeArticle(toRemove))
     }
 
     const handleStatusChange = (status,_id) => {
@@ -51,6 +50,12 @@ const Articles = (props) => {
         dispatch(getPaginateArticles(page))
     }
 
+    useEffect(()=>{
+        handleClose();
+        if(notifications && notifications.removeArticle){
+            dispatch(getPaginateArticles(arts.page))
+        }
+    },[dispatch,notifications,arts])
 
     useEffect(()=>{
         dispatch(getPaginateArticles())

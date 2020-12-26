@@ -8,6 +8,7 @@ import {
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
     CLEAR_NOTIFICATION,
+    REMOVE_ARTICLE,
     AUTH_USER,
     SIGN_OUT,
     SITE_LAYOUT
@@ -66,6 +67,12 @@ export const clearNotification = () => {
         })
     }
 }
+
+export const removeArticle = () => ({
+    type:REMOVE_ARTICLE
+})
+
+
 
 /////// notification /////////////
 

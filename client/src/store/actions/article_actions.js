@@ -81,4 +81,15 @@ export const changeStatusArticle = (status,_id) => {
     }
 }
 
+export const removeArticle = (id) => {
+    return async(dispatch)=>{
+        try{
+            await axios.delete(`/api/articles/admin/${id}`,getAuthHeader());
 
+            dispatch(articles.removeArticle());
+            dispatch(articles.successGlobal());
+        }catch(error) {
+            dispatch(articles.errorGlobal(error.response.data.message));
+        }
+    }
+}
