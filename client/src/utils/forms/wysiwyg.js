@@ -34,6 +34,7 @@ const WYSIWYG = (props) => {
                 onEditorStateChange={onEditorStateChange}
                 wrapperClassName="demo-wrapper"
                 editorClassName="demo-editor"
+                onBlur={props.setEditorBlur}
             />
         </div>
     )

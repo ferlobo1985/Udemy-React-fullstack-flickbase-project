@@ -1,5 +1,7 @@
 import * as articles from './index';
 import axios from 'axios';
+import { getAuthHeader } from '../../utils/tools';
+
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -30,5 +32,20 @@ export const getArticle = (id) => {
         }
     }
 }
+
+
+export const addArticle = (article) => {
+    return async(dispatch)=>{
+        try{
+            const request = await axios.post(`/api/articles/admin/add_articles`,article,getAuthHeader());
+
+            dispatch(articles.addArticle(request.data));
+            dispatch(articles.successGlobal('Good obi one !!'))
+        }catch(error){
+            dispatch(articles.errorGlobal(error.response.data.message))
+        }
+    }
+}
+
 
 
