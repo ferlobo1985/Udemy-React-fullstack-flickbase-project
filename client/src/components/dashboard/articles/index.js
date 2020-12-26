@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import AdminLayout from '../../../hoc/adminLayout';
+import PaginationComponent from './paginate';
 
 import {
     Modal,
@@ -15,12 +16,12 @@ import { useDispatch,useSelector } from 'react-redux';
 import { getPaginateArticles } from '../../../store/actions/article_actions';
 
 const Articles = () => {
+    const articles = useSelector(state=>state.articles);
     const dispatch = useDispatch();
-
+    let arts = articles.adminArticles;
 
     useEffect(()=>{
         dispatch(getPaginateArticles())
-
     },[dispatch])
 
     return(
@@ -47,7 +48,9 @@ const Articles = () => {
                 </ButtonToolbar>
 
 
-            
+                <PaginationComponent
+                    arts={arts}
+                />
 
 
             </div>
