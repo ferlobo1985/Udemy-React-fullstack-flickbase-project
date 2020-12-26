@@ -24,6 +24,15 @@ const Articles = () => {
         dispatch(getPaginateArticles())
     },[dispatch])
 
+
+    const goToPrevPage = (page) => {
+        dispatch(getPaginateArticles(page))
+    }
+
+    const goToNextPage = (page) => {
+        dispatch(getPaginateArticles(page))
+    }
+
     return(
         <AdminLayout section="Articles">
             <div className="articles_table">
@@ -50,6 +59,8 @@ const Articles = () => {
 
                 <PaginationComponent
                     arts={arts}
+                    prev={(page)=> goToPrevPage(page)}
+                    next={(page)=> goToNextPage(page)}
                 />
 
 

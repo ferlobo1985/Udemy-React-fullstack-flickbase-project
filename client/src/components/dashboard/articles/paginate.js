@@ -4,7 +4,18 @@ import Moment from 'react-moment';
 import Loading from '../../../utils/loader';
 
 
-const PaginationComponent = ({arts}) => {
+const PaginationComponent = ({arts,prev,next}) => {
+
+
+    const goToPrevPage = (page) => {
+        prev(page)
+    }
+
+
+    const goToNextPage = (page) => {
+        next(page)
+    }
+ 
 
     return(
         <>
@@ -31,8 +42,8 @@ const PaginationComponent = ({arts}) => {
                     <Pagination>
                         {arts.hasPrevPage ?
                             <>
-                                <Pagination.Prev onClick={()=> alert('prev')}/> 
-                                <Pagination.Item onClick={()=> alert('prev 2')}>
+                                <Pagination.Prev onClick={()=> goToPrevPage(arts.prevPage)}/> 
+                                <Pagination.Item onClick={()=> goToPrevPage(arts.prevPage)}>
                                     {arts.prevPage}
                                 </Pagination.Item>
                             </>
@@ -42,10 +53,10 @@ const PaginationComponent = ({arts}) => {
                         {arts.hasNextPage ?
                             <>
                                 
-                                <Pagination.Item onClick={()=> alert('next 2')}>
+                                <Pagination.Item onClick={()=> goToNextPage(arts.nextPage)}>
                                     {arts.nextPage}
                                 </Pagination.Item>
-                                <Pagination.Next onClick={()=> alert('next')}/> 
+                                <Pagination.Next onClick={()=> goToNextPage(arts.nextPage)}/> 
                             </>
                             :null
                         }
