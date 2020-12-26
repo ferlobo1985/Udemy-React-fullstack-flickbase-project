@@ -2,6 +2,7 @@ import {
     GET_ARTICLES,
     GET_ARTICLE,
     ADD_ARTICLE,
+    GET_ADMIN_ARTICLES,
     CLEAR_CURRENT_ARTICLE,
     ERROR_GLOBAL,
     SUCCESS_GLOBAL,
@@ -27,6 +28,11 @@ export const getArticles = (articles) => ({
 export const getArticle = (article) => ({
     type: GET_ARTICLE,
     payload: article
+})
+
+export const getPaginateArticles = (articles) => ({
+    type: GET_ADMIN_ARTICLES,
+    payload: articles
 })
 
 
