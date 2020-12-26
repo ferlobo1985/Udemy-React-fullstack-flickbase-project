@@ -3,7 +3,8 @@ import {
     GET_ARTICLE,
     ADD_ARTICLE,
     GET_ADMIN_ARTICLES,
-    CLEAR_CURRENT_ARTICLE
+    CLEAR_CURRENT_ARTICLE,
+    UPDATE_ARTICLE_STATUS
 } from '../types';
 
 export default function articleReducer(state={},action){
@@ -18,6 +19,13 @@ export default function articleReducer(state={},action){
             return {...state, adminArticles: action.payload }
         case CLEAR_CURRENT_ARTICLE:
             return {...state, current:'' }
+        case UPDATE_ARTICLE_STATUS:
+            return { ...state,
+                adminArticles:{
+                    ...state.adminArticles,
+                    docs: action.payload
+                }
+            }
         default:
             return state
     }

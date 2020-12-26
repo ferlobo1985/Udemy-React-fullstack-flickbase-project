@@ -87,7 +87,7 @@ router.route("/admin/paginate")
         const options = {
             page: req.body.page,
             limit,
-            sort:{_id:'asc'}
+            sort:{_id:'desc'}
         }
 
         const articles = await Article.aggregatePaginate(aggQuery,options);

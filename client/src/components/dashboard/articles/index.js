@@ -13,17 +13,26 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { useDispatch,useSelector } from 'react-redux';
+import { changeStatusArticle } from '../../../store/actions/article_actions';
 import { getPaginateArticles } from '../../../store/actions/article_actions';
 
-const Articles = () => {
+const Articles = (props) => {
     const articles = useSelector(state=>state.articles);
     const dispatch = useDispatch();
     let arts = articles.adminArticles;
+
+    const editArtsAction = (id) => {
+        props.history.push(`/dashboard/articles/edit/${id}`)
+    }
 
     useEffect(()=>{
         dispatch(getPaginateArticles())
     },[dispatch])
 
+    const handleStatusChange = (status,_id) => {
+        let newStatus = status === 'draft' ? 'public':'draft';
+        dispatch(changeStatusArticle(newStatus,_id))
+    }
 
     const goToPrevPage = (page) => {
         dispatch(getPaginateArticles(page))
@@ -61,6 +70,8 @@ const Articles = () => {
                     arts={arts}
                     prev={(page)=> goToPrevPage(page)}
                     next={(page)=> goToNextPage(page)}
+                    handleStatusChange={(status,id)=>handleStatusChange(status,id)}
+                    editArtsAction={(id)=> editArtsAction(id)}
                 />
 
 
