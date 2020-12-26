@@ -4,7 +4,9 @@ import Moment from 'react-moment';
 import Loading from '../../../utils/loader';
 
 
-const PaginationComponent = ({arts,prev,next,handleStatusChange,editArtsAction}) => {
+const PaginationComponent = ({
+    arts,prev,next,handleStatusChange,editArtsAction,handleShow
+}) => {
 
     const goToPrevPage = (page) => {
         prev(page)
@@ -33,7 +35,7 @@ const PaginationComponent = ({arts,prev,next,handleStatusChange,editArtsAction})
                                     <td>{item.title}</td>
                                     <td>{item.score}</td>
                                     <td className="action_btn remove_btn"
-                                        onClick={()=> alert(item._id)}
+                                        onClick={()=> handleShow(item._id)}
                                     >
                                         Remove
                                     </td>
