@@ -93,3 +93,15 @@ export const removeArticle = (id) => {
         }
     }
 }
+
+
+export const getAdminArticle = (id) => {
+    return async(dispatch)=>{
+        try{
+            const request = await axios.get(`/api/articles/admin/${id}`,getAuthHeader());
+            dispatch(articles.getArticle(request.data))
+        } catch(error){
+            dispatch(articles.getArticle(error.response.data.message))
+        }
+    }
+}
