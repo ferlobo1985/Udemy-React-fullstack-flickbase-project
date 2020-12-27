@@ -2,7 +2,8 @@ import React,{ useState,useEffect,useRef } from 'react';
 import AdminLayout from '../../../hoc/adminLayout';
 import { useFormik, FieldArray, FormikProvider } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAdminArticle } from '../../../store/actions/article_actions';
+import { getAdminArticle, updateArticle } from '../../../store/actions/article_actions';
+import {clearCurrentArticle} from '../../../store/actions/index';
 import { validation, formValues } from './validationSchema';
 import Loader from '../../../utils/loader';
 
@@ -43,7 +44,7 @@ const EditArticle = (props) => {
         validationSchema:validation,
         onSubmit:(values,{resetForm}) =>{
             setIsSubmitting(true);
-           // dispatch(addArticle(values))
+            dispatch(updateArticle(values, props.match.params.id))
         }
     });
 
@@ -64,12 +65,12 @@ const EditArticle = (props) => {
 
 
     useEffect(()=>{
-        if(notifications && notifications.success){
-            props.history.push('/dashboard/articles');
-        }
-        if(notifications && notifications.error){
+        // if(notifications && notifications.success){
+        //     props.history.push('/dashboard/articles');
+        // }
+        // if(notifications && notifications.error){
             setIsSubmitting(false);
-        }
+     //   }
     },[notifications,props.history])
 
     //// edit ///
@@ -83,8 +84,13 @@ const EditArticle = (props) => {
             setEditContent(articles.current.content)
         }
     },[articles])
-
     /// edit ///
+
+    useEffect(()=>{
+        return()=>{
+            dispatch(clearCurrentArticle());
+        }
+    },[dispatch])
 
 
     return(

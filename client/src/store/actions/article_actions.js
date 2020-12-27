@@ -105,3 +105,15 @@ export const getAdminArticle = (id) => {
         }
     }
 }
+
+export const updateArticle = (article,id) => {
+    return async(dispatch)=>{
+        try{
+            const newArticle = await axios.patch(`/api/articles/admin/${id}`,article,getAuthHeader());
+            dispatch(articles.getArticle(newArticle.data));
+            dispatch(articles.successGlobal('Update done !!'))
+        } catch(error) {
+            dispatch(articles.errorGlobal('Error, try again !'))
+        }
+    }
+}
