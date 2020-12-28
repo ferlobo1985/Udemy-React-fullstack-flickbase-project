@@ -11,6 +11,9 @@
     "dev": "concurrently  \"npm run server\"  \"npm run client\" ",
     "heroku-postbuild":"npm install --prefix client && run build --prefix client"
   },
+  "engines":{
+    "node":"14.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
