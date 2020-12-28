@@ -18,6 +18,7 @@ export const REMOVE_ARTICLE = 'remove_article';
 /// users 
 export const AUTH_USER = 'auth_user';
 export const SIGN_OUT = 'sign_out';
+export const CHANGE_USER_EMAIL = 'change_user_email';
 
 // site
 export const SITE_LAYOUT = 'site_layout';

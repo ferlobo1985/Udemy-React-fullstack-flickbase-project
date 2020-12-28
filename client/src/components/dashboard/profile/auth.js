@@ -18,6 +18,12 @@ const AuthProfile = () => {
     const closeModal = () => setEmailModal(false);
     const openModal = () => setEmailModal(true);
 
+    useEffect(()=>{
+        if(notifications && notifications.success){
+            closeModal()
+        }
+    },[notifications])
+
     return(
         <div>
             <div className="mb-3 auth_grid">

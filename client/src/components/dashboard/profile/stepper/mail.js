@@ -2,14 +2,14 @@ import React,{ useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
+import { changeEmail } from '../../../../store/actions/users_actions';
 
 import {
     TextField,
     Button,
     Stepper,
     Step,
-    StepLabel,
-    useScrollTrigger
+    StepLabel
 } from '@material-ui/core'
 
 
@@ -36,7 +36,7 @@ const EmailStepper = ({user}) => {
             }),
         }),
         onSubmit:(values, {resetForm})=>{
-            console.log(values)
+           dispatch(changeEmail(values))
         }
     });
 
