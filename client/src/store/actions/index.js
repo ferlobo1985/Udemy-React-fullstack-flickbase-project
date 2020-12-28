@@ -12,7 +12,8 @@ import {
     AUTH_USER,
     SIGN_OUT,
     SITE_LAYOUT,
-    CHANGE_USER_EMAIL
+    CHANGE_USER_EMAIL,
+    UPDATE_USER_PROFILE
 } from '../types';
 
 /////////// articles //////////////
@@ -91,6 +92,12 @@ export const changeUserEmail = (data) => ({
     type: CHANGE_USER_EMAIL,
     payload: data
 })
+
+export const updateUserProfile = (userdata) => ({
+    type: UPDATE_USER_PROFILE,
+    payload: userdata
+})
+
 /////// site /////////////
 
 export const appLayout = (layout) => ({
