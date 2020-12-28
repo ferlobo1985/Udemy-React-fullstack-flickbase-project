@@ -4,12 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node server/server.js",
     "server":"nodemon server/server.js",
     "client":"npm start --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently  \"npm run server\"  \"npm run client\" ",
-    "heroku-postbuild":"npm install --prefix client && run build --prefix client"
+    "dev": "concurrently  \"npm run server\"  \"npm run client\" "
   },
   "engines":{
     "node":"14.x"
