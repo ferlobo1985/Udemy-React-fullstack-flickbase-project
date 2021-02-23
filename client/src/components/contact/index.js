@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useFormik, yupToFormErrors } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { contactUs } from '../../store/actions/users_actions';
 
 import { TextField, Button } from '@material-ui/core'
 import Loader from '../../utils/loader';
@@ -25,12 +26,18 @@ const Contact = () => {
             .required('Sorry you need to say something')
             .max(500,'Sorry, the message is too long')
         }),
-        onSubmit: (values,{resetForm})=>{
+        onSubmit: (values)=>{
             setLoading(true);
-            //// dispatch 
+            dispatch(contactUs(values))
         }
-    })
+    });
 
+    useEffect(()=>{
+        if(notifications && notifications.success){
+            formik.resetForm();
+            setLoading(false);
+        }
+    },[notifications])
 
     const errorHelper = (formik, values) => ({
         error: formik.errors[values] && formik.touched[values] ? true:false,

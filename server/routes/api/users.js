@@ -3,6 +3,7 @@ let router = express.Router();
 require('dotenv').config();
 const {checkLoggedIn} = require('../../middleware/auth');
 const { grantAccess } = require('../../middleware/roles');
+const  { contactMail } = require('../../config/email');
 
 // model 
 const { User } = require('../../models/user_model');
@@ -122,6 +123,17 @@ router.route("/update_email")
 router.route('/isauth')
 .get(checkLoggedIn,async (req,res) =>{
     res.status(200).send(getUserProps(req.user))
+})
+
+
+router.route('/contact')
+.post(async(req,res)=>{
+    try{
+        await contactMail(req.body)
+        res.status(200).send('ok');
+    } catch(error){
+        res.status(400).json({message:"Sorry, try again later",error:error});
+    }
 })
 
 

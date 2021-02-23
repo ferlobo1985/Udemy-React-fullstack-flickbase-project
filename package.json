@@ -27,7 +27,7 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.8",
     "mongoose-aggregate-paginate-v2": "^1.0.42",
-    "nodemailer": "^6.4.17",
+    "nodemailer": "^6.4.18",
     "validator": "^13.5.2"
   }
 }
