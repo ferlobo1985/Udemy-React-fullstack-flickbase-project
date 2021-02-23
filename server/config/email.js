@@ -11,6 +11,48 @@ let transporter = nodemailer.createTransport({
     }
 });
 
+
+const registerEmail = async(userEmail,emailToken)=> {
+    try{
+        let mailGenerator = new Mailgen({
+            theme:"default",
+            product:{
+                name: "Flickbase",
+                link: `${process.env.EMAIL_MAIN_URL}`
+            }
+        });
+
+        const email = {
+            body:{
+              name: userEmail,
+              intro: 'Welcome to Flickbase! We\'re very excited to have you on board.',
+              action:{
+                instructions: 'To get validate your account, please click here:',
+                button:{
+                    color:'#1a73e8',
+                    text: 'Validate your account',
+                    link: `${process.env.SITE_DOMAIN}verification?t=${emailToken}`
+                }
+              },
+              outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
+            }
+        };
+
+        let emailBody = mailGenerator.generate(email);
+        let message = {
+            from: process.env.EMAIL,
+            to:userEmail, 
+            subject:"Welcome to flickerbase",
+            html:emailBody
+        }
+
+        await transporter.sendMail(message);
+        return true
+    } catch(error){
+        if(error) throw error;
+    }
+}
+
 const contactMail = async(contact) => {
     try{
         let mailGenerator = new Mailgen({
@@ -50,5 +92,6 @@ const contactMail = async(contact) => {
 }
 
 module.exports = {
-    contactMail
+    contactMail,
+    registerEmail
 }

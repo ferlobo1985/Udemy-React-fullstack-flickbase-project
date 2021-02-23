@@ -3,7 +3,7 @@ let router = express.Router();
 require('dotenv').config();
 const {checkLoggedIn} = require('../../middleware/auth');
 const { grantAccess } = require('../../middleware/roles');
-const  { contactMail } = require('../../config/email');
+const  { contactMail, registerEmail } = require('../../config/email');
 
 // model 
 const { User } = require('../../models/user_model');
@@ -27,6 +27,9 @@ router.route("/register")
         const doc = await user.save();
 
         // 4 send email
+        const emailToken = user.generateRegisterToken();
+        await registerEmail(doc.email,emailToken);
+
 
         // save...send token with cookie
         res.cookie('x-access-token',token)
@@ -148,7 +151,8 @@ const getUserProps = (user) => {
         firstname:user.firstname,
         lastname: user.lastname,
         age: user.age,
-        role: user.role
+        role: user.role,
+        verified:user.verified
     }
 }
 
