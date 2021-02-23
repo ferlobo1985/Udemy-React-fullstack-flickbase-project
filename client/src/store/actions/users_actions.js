@@ -106,6 +106,24 @@ export const  contactUs = (data) => {
             dispatch(users.errorGlobal(error.response.data.message))
         }
     }
-
 }
+
+export const accountVerify = (token) => {
+    return async(dispatch,getState)=>{
+        try{
+            const user = getState().users.auth;
+            await axios.get(`/api/users/verify?validation=${token}`);
+
+            if(user){
+                dispatch(users.accountVerify());
+            }
+            dispatch(users.successGlobal('Account verified !!'))
+        } catch(error){
+            dispatch(users.errorGlobal(error.response.data.message))
+        }
+    }
+}
+
+
+
 

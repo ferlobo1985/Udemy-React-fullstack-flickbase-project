@@ -79,6 +79,11 @@ userSchema.methods.generateToken = function(){
     return token;
 }
 
+userSchema.statics.validateToken = function(token){
+    const verify = jwt.verify(token,process.env.DB_SECRET);
+    return verify;
+}
+
 userSchema.methods.comparePassword = async function(candidatePassword){
     const user = this;
     const match = await bcrypt.compare(candidatePassword,user.password);
@@ -90,6 +95,7 @@ userSchema.statics.emailTaken = async function(email){
     const user = await this.findOne({email});
     return !!user;
 }
+
 
 
 const User = mongoose.model('User', userSchema);

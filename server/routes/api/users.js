@@ -137,11 +137,24 @@ router.route('/contact')
     } catch(error){
         res.status(400).json({message:"Sorry, try again later",error:error});
     }
+});
+
+router.route('/verify')
+.get( async(req,res)=>{
+    try{
+        const token = User.validateToken(req.query.validation);
+        const user = await User.findById(token._id);
+        if(!user) return res.status(400).json({ message:'User not found !!'});
+        if(user.verified) return res.status(400).json({message:'Already verified !!'});
+
+        user.verified = true;
+
+        await user.save();
+        res.status(200).send(getUserProps(user));
+    } catch(error){
+        res.status(400).send(error)
+    }
 })
-
-
-
-
 
 
 const getUserProps = (user) => {

@@ -13,7 +13,8 @@ import {
     SIGN_OUT,
     SITE_LAYOUT,
     CHANGE_USER_EMAIL,
-    UPDATE_USER_PROFILE
+    UPDATE_USER_PROFILE,
+    VERIFY_ACCOUNT
 } from '../types';
 
 /////////// articles //////////////
@@ -97,6 +98,11 @@ export const updateUserProfile = (userdata) => ({
     type: UPDATE_USER_PROFILE,
     payload: userdata
 })
+
+ export const accountVerify = () => ({
+     type:VERIFY_ACCOUNT
+ })
+
 
 /////// site /////////////
 

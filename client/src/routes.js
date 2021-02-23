@@ -18,6 +18,7 @@ import AddArticle from './components/dashboard/articles/add';
 import EditArticle from './components/dashboard/articles/edit';
 import Article from './components/articles/article';
 import Contact from './components/contact';
+import AccountVerify from './components/auth/verification';
 
 
 const Routes = () => {
@@ -51,6 +52,7 @@ const Routes = () => {
             <Route path="/dashboard/profile" component={AuthGuard(Profile)}/>
             <Route path="/dashboard" component={AuthGuard(Dashboard)}/>
             <Route path="/contact" component={Contact}/>
+            <Route path="/verification" component={AccountVerify}/>
             <Route path="/article/:id" component={Article}/>
             <Route path="/auth" component={Auth}/>
             <Route path="/" component={Home}/>
