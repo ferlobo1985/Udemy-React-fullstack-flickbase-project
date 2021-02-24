@@ -19,7 +19,7 @@ import EditArticle from './components/dashboard/articles/edit';
 import Article from './components/articles/article';
 import Contact from './components/contact';
 import AccountVerify from './components/auth/verification';
-
+import Categories from './components/dashboard/categories'
 
 const Routes = () => {
   const [loading,setLoading] = useState(true);
@@ -50,6 +50,7 @@ const Routes = () => {
             <Route path="/dashboard/articles/add" component={AuthGuard(AddArticle,true)}/>
             <Route path="/dashboard/articles" component={AuthGuard(Articles,true)}/>
             <Route path="/dashboard/profile" component={AuthGuard(Profile)}/>
+            <Route path="/dashboard/categories" component={AuthGuard(Categories)}/>
             <Route path="/dashboard" component={AuthGuard(Dashboard)}/>
             <Route path="/contact" component={Contact}/>
             <Route path="/verification" component={AccountVerify}/>

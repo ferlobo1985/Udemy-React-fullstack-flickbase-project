@@ -6,6 +6,7 @@ const { sortArgsHelper } = require('../../config/helpers');
 
 // model 
 const { Article } = require('../../models/article_model');
+const { Category } = require('../../models/category_model');
 
 // add single article - DONE
 // admin get,patch,delete single article (draft or public) - DONE
@@ -132,6 +133,26 @@ router.route("/loadmore")
         res.status(400).json({message:'Error fetching articles',error});
     }
 })
+
+router.route("/categories")
+.get(async(req,res)=>{
+    try{
+        const categories = await Category.find();
+        res.status(200).json(categories);
+    }catch(error){
+        res.status(400).json({message:"Error getting categories",error})
+    }
+})
+.post(checkLoggedIn,grantAccess('createAny','categories',async(req,res)=>{
+    try{
+        const category = new Category(req.body);
+        await category.save()
+
+        res.status(200).json(category);
+    } catch(error){
+        res.status(400).json({message:"Error adding categories",error})
+    }
+}))
 
 
 
