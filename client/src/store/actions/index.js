@@ -14,7 +14,9 @@ import {
     SITE_LAYOUT,
     CHANGE_USER_EMAIL,
     UPDATE_USER_PROFILE,
-    VERIFY_ACCOUNT
+    VERIFY_ACCOUNT,
+    GET_CATEGORIES,
+    ADD_CATEGORY
 } from '../types';
 
 /////////// articles //////////////
@@ -49,6 +51,18 @@ export const updateArticleStatus = (articles) => ({
 export const clearCurrentArticle = () => ({
     type: CLEAR_CURRENT_ARTICLE
 })
+
+export const getCategories = (categories) => ({
+    type:GET_CATEGORIES,
+    payload: categories
+})
+
+export const addCategory = (categories) => ({
+    type:ADD_CATEGORY,
+    payload: categories
+})
+
+
 
 
 /////// notification /////////////

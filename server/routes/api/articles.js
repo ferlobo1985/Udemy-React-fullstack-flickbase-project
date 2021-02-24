@@ -142,9 +142,9 @@ router.route("/categories")
     }catch(error){
         res.status(400).json({message:"Error getting categories",error})
     }
-})
-.post(checkLoggedIn,grantAccess('createAny','categories',async(req,res)=>{
+}).post(checkLoggedIn,grantAccess('createAny','categories'),async(req,res)=>{
     try{
+        console.log('hey')
         const category = new Category(req.body);
         await category.save()
 
@@ -152,7 +152,7 @@ router.route("/categories")
     } catch(error){
         res.status(400).json({message:"Error adding categories",error})
     }
-}))
+});
 
 
 

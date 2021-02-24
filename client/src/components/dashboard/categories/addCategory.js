@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux'
+import { addCategory } from '../../../store/actions/article_actions';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -20,7 +21,7 @@ const AddCategories = () => {
             .required('The name is required')
         }),
         onSubmit:(values, { resetForm })=>{
-            //// go to the server 
+            dispatch(addCategory(values))
             resetForm();
         }
     })
