@@ -144,7 +144,6 @@ router.route("/categories")
     }
 }).post(checkLoggedIn,grantAccess('createAny','categories'),async(req,res)=>{
     try{
-        console.log('hey')
         const category = new Category(req.body);
         await category.save()
 
