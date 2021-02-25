@@ -64,6 +64,12 @@ const Articles = (props) => {
         }
     }   
 
+    const resetSearch = () => {
+        setSearchValues({memory:'',value:''});
+        dispatch(getPaginateArticles(1,limit))
+    }
+
+
     useEffect(()=>{
         setLoading(true)
         dispatch(getPaginateArticles(1,limit,searchValues.memory))
@@ -105,21 +111,44 @@ const Articles = (props) => {
                             <FormControl
                                 type="text"
                                 placeholder="Example"
+                                value={searchValues.value}
                                 onChange={(e)=> setSearchValues({value:e.target.value})}
                             />
                         </InputGroup>
                     </form>
                 </ButtonToolbar>
 
+                { loading ?
+                    <Loader/>
+                :
+                    <>
+                        <div>
+                            { searchValues.memory !== '' ?
+                                <p>
+                                    Your search for <b>"{searchValues.memory}"</b> had {articles.adminArticles.totalDocs} result.
+                                    <span
+                                        style={{color:'blue',cursor:'pointer'}}
+                                        onClick={()=> resetSearch()}
+                                    >
+                                        RESET SEARCH
+                                    </span>
+                                </p>
+                            :null}
+                        </div>
 
-                <PaginationComponent
-                    arts={arts}
-                    prev={(page)=> goToPrevPage(page)}
-                    next={(page)=> goToNextPage(page)}
-                    handleShow={(id)=> handleShow(id)}
-                    handleStatusChange={(status,id)=>handleStatusChange(status,id)}
-                    editArtsAction={(id)=> editArtsAction(id)}
-                />
+                        <PaginationComponent
+                            arts={arts}
+                            prev={(page)=> goToPrevPage(page)}
+                            next={(page)=> goToNextPage(page)}
+                            handleShow={(id)=> handleShow(id)}
+                            handleStatusChange={(status,id)=>handleStatusChange(status,id)}
+                            editArtsAction={(id)=> editArtsAction(id)}
+                        />
+                    </>
+                }
+
+
+              
 
             <Modal show={removeAlert} onHide={handleClose}>
                 <Modal.Header closeButton>
