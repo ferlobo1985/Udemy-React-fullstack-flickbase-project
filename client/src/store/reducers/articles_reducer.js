@@ -6,7 +6,8 @@ import {
     CLEAR_CURRENT_ARTICLE,
     UPDATE_ARTICLE_STATUS,
     GET_CATEGORIES,
-    ADD_CATEGORY
+    ADD_CATEGORY,
+    NAV_SEARCH
 } from '../types';
 
 export default function articleReducer(state={},action){
@@ -31,7 +32,9 @@ export default function articleReducer(state={},action){
         case GET_CATEGORIES:
             return { ...state, categories: action.payload }
         case ADD_CATEGORY:
-            return { ...state,categories: action.payload }
+            return { ...state, categories: action.payload }
+        case NAV_SEARCH:
+            return { ...state, navsearch: action.payload }
         default:
             return state
     }

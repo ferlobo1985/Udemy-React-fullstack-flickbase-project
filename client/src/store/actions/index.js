@@ -16,7 +16,8 @@ import {
     UPDATE_USER_PROFILE,
     VERIFY_ACCOUNT,
     GET_CATEGORIES,
-    ADD_CATEGORY
+    ADD_CATEGORY,
+    NAV_SEARCH
 } from '../types';
 
 /////////// articles //////////////
@@ -62,7 +63,10 @@ export const addCategory = (categories) => ({
     payload: categories
 })
 
-
+export const navSearch = (articles) => ({
+    type:NAV_SEARCH,
+    payload: articles
+})
 
 
 /////// notification /////////////
