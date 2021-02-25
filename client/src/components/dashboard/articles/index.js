@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import AdminLayout from '../../../hoc/adminLayout';
 import PaginationComponent from './paginate';
+import Loader from '../../../utils/loader';
 
 import {
     Modal,
@@ -20,7 +21,13 @@ const Articles = (props) => {
     const notifications = useSelector(state=>state.notifications)
     const dispatch = useDispatch();
     const [removeAlert, setRemoveAlert] = useState(false);
-    const [toRemove,setToRemove] = useState(null)
+    const [toRemove,setToRemove] = useState(null);
+    const [loading,setLoading] = useState(true)
+    const [searchValues, setSearchValues] = useReducer(
+        (state, newState) => ({ ...state,...newState}),
+        {value:'',memory:''}
+    );
+    let limit = 5;
     let arts = articles.adminArticles;
 
     const editArtsAction = (id) => {
@@ -43,23 +50,43 @@ const Articles = (props) => {
     }
 
     const goToPrevPage = (page) => {
-        dispatch(getPaginateArticles(page))
+        dispatch(getPaginateArticles(page,limit,searchValues.memory))
     }
 
     const goToNextPage = (page) => {
-        dispatch(getPaginateArticles(page))
+        dispatch(getPaginateArticles(page,limit,searchValues.memory))
     }
+
+    const triggerSearch = (e) => {
+        e.preventDefault();
+        if(searchValues.value !== ''){
+          setSearchValues({memory: searchValues.value})
+        }
+    }   
+
+    useEffect(()=>{
+        setLoading(true)
+        dispatch(getPaginateArticles(1,limit,searchValues.memory))
+    },[dispatch,searchValues.memory,limit])
+
+    useEffect(()=>{
+        setLoading(false);
+    },[articles])
+
 
     useEffect(()=>{
         handleClose();
         if(notifications && notifications.removeArticle){
-            dispatch(getPaginateArticles(arts.page))
+            dispatch(getPaginateArticles(arts.page,limit, searchValues.memory))
         }
-    },[dispatch,notifications,arts])
+    },[dispatch,notifications,arts,limit,searchValues.memory])
 
     useEffect(()=>{
         dispatch(getPaginateArticles())
     },[dispatch])
+
+
+    console.log(searchValues)
 
     return(
         <AdminLayout section="Articles">
@@ -70,7 +97,7 @@ const Articles = (props) => {
                             <Button variant="secondary">Add article</Button>
                         </LinkContainer>
                     </ButtonGroup>
-                    <form onSubmit={()=> alert('search')}>
+                    <form onSubmit={triggerSearch}>
                         <InputGroup>
                             <InputGroup.Prepend>
                                 <InputGroup.Text id="btnGroupAddon2">@</InputGroup.Text>
@@ -78,7 +105,7 @@ const Articles = (props) => {
                             <FormControl
                                 type="text"
                                 placeholder="Example"
-
+                                onChange={(e)=> setSearchValues({value:e.target.value})}
                             />
                         </InputGroup>
                     </form>
