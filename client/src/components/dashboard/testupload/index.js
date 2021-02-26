@@ -18,7 +18,16 @@ const TestUpload = () => {
             formData.append("file",values.archivo )
 
             /// multer
-            axios.post('/api/files/multerupload',formData,{
+            // axios.post('/api/files/multerupload',formData,{
+            //     header:{'content-type':'multipart/form-data'}
+            // }).then(response=>{
+            //     console.log(response)
+            // }).catch(error=>{
+            //     console.log(error)
+            // })
+
+            /// cloudinary
+            axios.post('/api/files/testupload',formData,{
                 header:{'content-type':'multipart/form-data'}
             }).then(response=>{
                 console.log(response)
