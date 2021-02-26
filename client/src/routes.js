@@ -21,6 +21,7 @@ import Contact from './components/contact';
 import AccountVerify from './components/auth/verification';
 import Categories from './components/dashboard/categories';
 import SearchResults from './components/search';
+import TestUpload from './components/dashboard/testupload'
 
 const Routes = () => {
   const [loading,setLoading] = useState(true);
@@ -52,6 +53,7 @@ const Routes = () => {
             <Route path="/dashboard/articles" component={AuthGuard(Articles,true)}/>
             <Route path="/dashboard/profile" component={AuthGuard(Profile)}/>
             <Route path="/dashboard/categories" component={AuthGuard(Categories)}/>
+            <Route path="/dashboard/testupload" component={AuthGuard(TestUpload)}/>
             <Route path="/dashboard" component={AuthGuard(Dashboard)}/>
             <Route path="/article/:id" component={Article}/>
             <Route path="/contact" component={Contact}/>
