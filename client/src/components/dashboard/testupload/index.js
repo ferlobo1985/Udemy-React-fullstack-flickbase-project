@@ -14,7 +14,17 @@ const TestUpload = () => {
             archivo: Yup.mixed().required('A file is required')
         }),
         onSubmit:(values)=>{
-            /// axios
+            let formData = new FormData();
+            formData.append("file",values.archivo )
+
+            /// multer
+            axios.post('/api/files/multerupload',formData,{
+                header:{'content-type':'multipart/form-data'}
+            }).then(response=>{
+                console.log(response)
+            }).catch(error=>{
+                console.log(error)
+            })
         }
     })
 
